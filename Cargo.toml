@@ -1,0 +1,17 @@
+[workspace]
+members = [
+ "apps/lazydj-desktop",
+ "crates/core",
+ "crates/events",
+ "crates/errors",
+ "crates/config",
+ "crates/commands",
+ "crates/plugins",
+ "crates/decoder",
+ "crates/output",
+ "crates/audio",
+ "crates/database",
+ "crates/library",
+ "crates/cache",
+"crates/mixer",
+]

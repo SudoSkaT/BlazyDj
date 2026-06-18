@@ -1,0 +1,12 @@
+[package]
+name = "lazydj-audio"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+lazydj-decoder = { path = "../decoder" }
+lazydj-output = { path = "../output" }
+lazydj-events = { path = "../events" }
+
+[dev-dependencies]
+hound = "3"
