@@ -18,6 +18,36 @@ pub async fn import_file(db: &Database, path: &str) -> Result<i64> {
     Ok(id)
 }
 
+/// Import with waveform generation and caching. Uses provided cache base path to store waveform.
+pub async fn import_file_with_cache(
+    db: &Database,
+    path: &str,
+    cache_base: &std::path::Path,
+) -> Result<i64> {
+    // decode to get samples for waveform
+    let decoded =
+        lazydj_decoder::decode_wav(path).map_err(|e| anyhow::anyhow!("decode error: {}", e))?;
+
+    // add to database
+    let id = db
+        .add_track(
+            path,
+            Path::new(path).file_stem().and_then(|s| s.to_str()),
+            None,
+        )
+        .await
+        .map_err(|e| anyhow::anyhow!(e))?;
+
+    // generate waveform
+    let wf = lazydj_waveform::generate_waveform(&decoded.samples, 512);
+
+    // save to cache directory
+    lazydj_cache::save_waveform(cache_base, id, &wf)
+        .map_err(|e| anyhow::anyhow!("cache save error: {}", e))?;
+
+    Ok(id)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

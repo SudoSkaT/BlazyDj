@@ -5,5 +5,8 @@ edition = "2024"
 
 [dependencies]
 lazydj-database = { path = "../database" }
+lazydj-decoder = { path = "../decoder" }
+lazydj-waveform = { path = "../waveform" }
+lazydj-cache = { path = "../cache" }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 anyhow = "1.0"
