@@ -14,4 +14,7 @@ members = [
  "crates/library",
  "crates/cache",
 "crates/mixer",
+"crates/waveform",
+"crates/waveform-render",
+"crates/ui",
 ]
