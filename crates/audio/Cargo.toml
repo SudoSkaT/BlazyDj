@@ -7,6 +7,7 @@ edition = "2024"
 lazydj-decoder = { path = "../decoder" }
 lazydj-output = { path = "../output" }
 lazydj-events = { path = "../events" }
+lazydj-mixer = { path = "../mixer" }
 
 [dev-dependencies]
 hound = "3"
